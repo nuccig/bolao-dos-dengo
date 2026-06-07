@@ -1,0 +1,201 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum PoolRole {
+  admin
+  member
+}
+
+enum MatchStatus {
+  scheduled
+  live
+  finished
+  postponed
+  cancelled
+}
+
+enum SyncStatus {
+  running
+  success
+  failed
+}
+
+enum AchievementCode {
+  first_prediction
+  exact_score_hit
+  three_outcome_streak
+  group_stage_participant
+}
+
+model UserProfile {
+  id           String            @id
+  displayName String
+  avatarUrl   String?
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  memberships  PoolMembership[]
+  predictions  Prediction[]
+  achievements UserAchievement[]
+}
+
+model Pool {
+  id           String            @id @default(cuid())
+  name         String
+  slug         String            @unique
+  inviteCode   String            @unique
+  createdById  String
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  memberships  PoolMembership[]
+  predictions  Prediction[]
+  achievements UserAchievement[]
+  rankings     RankingSnapshot[]
+}
+
+model PoolMembership {
+  id        String      @id @default(cuid())
+  poolId    String
+  userId    String
+  role      PoolRole    @default(member)
+  joinedAt  DateTime    @default(now())
+  pool      Pool        @relation(fields: [poolId], references: [id], onDelete: Cascade)
+  user      UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([poolId, userId])
+  @@index([userId])
+}
+
+model Competition {
+  id         String   @id @default(cuid())
+  provider   String
+  externalId String
+  name       String
+  season     Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  matches    Match[]
+
+  @@unique([provider, externalId, season])
+}
+
+model Team {
+  id         String   @id @default(cuid())
+  provider   String
+  externalId String
+  name       String
+  code       String?
+  logoUrl    String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  homeMatches Match[] @relation("HomeTeam")
+  awayMatches Match[] @relation("AwayTeam")
+
+  @@unique([provider, externalId])
+}
+
+model Match {
+  id            String       @id @default(cuid())
+  provider      String
+  externalId    String
+  competitionId String
+  homeTeamId    String
+  awayTeamId    String
+  kickoffAt     DateTime
+  status        MatchStatus  @default(scheduled)
+  round         String?
+  venue         String?
+  homeScore     Int?
+  awayScore     Int?
+  penaltyHomeScore Int?
+  penaltyAwayScore Int?
+  finishedAt    DateTime?
+  rawPayload     Json?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  competition   Competition  @relation(fields: [competitionId], references: [id], onDelete: Cascade)
+  homeTeam      Team         @relation("HomeTeam", fields: [homeTeamId], references: [id])
+  awayTeam      Team         @relation("AwayTeam", fields: [awayTeamId], references: [id])
+  predictions   Prediction[]
+
+  @@unique([provider, externalId])
+  @@index([kickoffAt])
+  @@index([competitionId])
+}
+
+model Prediction {
+  id             String      @id @default(cuid())
+  poolId         String
+  userId         String
+  matchId        String
+  homeScore      Int
+  awayScore      Int
+  points         Int?
+  exactScoreHit  Boolean     @default(false)
+  outcomeHit     Boolean     @default(false)
+  scoredAt       DateTime?
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+  pool           Pool        @relation(fields: [poolId], references: [id], onDelete: Cascade)
+  user           UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
+  match          Match       @relation(fields: [matchId], references: [id], onDelete: Cascade)
+
+  @@unique([poolId, userId, matchId])
+  @@index([userId])
+  @@index([matchId])
+}
+
+model RankingSnapshot {
+  id             String   @id @default(cuid())
+  poolId         String
+  userId         String
+  totalPoints    Int
+  exactScoreHits Int
+  outcomeHits    Int
+  lastPointsAt   DateTime?
+  rank           Int
+  calculatedAt   DateTime @default(now())
+  pool           Pool     @relation(fields: [poolId], references: [id], onDelete: Cascade)
+
+  @@index([poolId, rank])
+}
+
+model Achievement {
+  id          String          @id @default(cuid())
+  code        AchievementCode @unique
+  name        String
+  description String
+  createdAt   DateTime        @default(now())
+  users       UserAchievement[]
+}
+
+model UserAchievement {
+  id            String      @id @default(cuid())
+  poolId        String
+  userId        String
+  achievementId String
+  earnedAt      DateTime    @default(now())
+  pool          Pool        @relation(fields: [poolId], references: [id], onDelete: Cascade)
+  user          UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
+  achievement   Achievement @relation(fields: [achievementId], references: [id], onDelete: Cascade)
+
+  @@unique([poolId, userId, achievementId])
+}
+
+model ApiSyncRun {
+  id          String     @id @default(cuid())
+  provider    String
+  endpoint    String
+  status      SyncStatus @default(running)
+  startedAt   DateTime   @default(now())
+  finishedAt  DateTime?
+  requestHash String?
+  errorMessage String?
+  recordsRead Int        @default(0)
+  recordsUpserted Int    @default(0)
+}
