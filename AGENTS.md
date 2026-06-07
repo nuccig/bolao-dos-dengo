@@ -29,6 +29,7 @@ Optimize for a fast mobile flow, clear trust in scoring, and simple administrati
 - Use Supabase Auth for authentication.
 - Use Postgres/Supabase as the database and Prisma as the application data layer.
 - Treat API-Football as the primary external football data provider, but never render screens directly from external API calls. Persist and upsert provider data locally first.
+- O terminal padrão para execução de comandos é o bash
 
 ## Business Rules
 
