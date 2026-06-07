@@ -13,6 +13,10 @@ Claiming work is complete without verification is dishonesty, not efficiency.
 
 **Violating the letter of this rule is violating the spirit of this rule.**
 
+## Supporting Imported Skills
+
+- `diagnose`: use only after verification fails and the root cause is not obvious from the output. Build a reproducible feedback loop, minimize the failure, fix the cause, then re-run this verification gate.
+
 ## The Iron Law
 
 ```

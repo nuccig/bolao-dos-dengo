@@ -18,6 +18,14 @@ Execute one PRD task from exploration through tracking updates.
 - Optional shared workflow memory path.
 - Optional current task memory path.
 
+## Supporting Imported Skills
+
+- `tdd`: use when the task changes behavior, implements domain rules, fixes a bug, or explicitly requires tests. Work in vertical red-green-refactor slices rather than writing all tests or all code at once.
+- `diagnose`: use when the task starts from a bug report, a performance regression, or a failing validation command whose root cause is unclear.
+- `zoom-out`: use during grounding if the task touches an unfamiliar module cluster and you need a higher-level map before editing.
+
+Do not use `handoff` as a substitute for workflow memory. If workflow memory paths are provided, `cy-workflow-memory` owns durable cross-task context for the Compozy run.
+
 ## Workflow
 
 1. Ground in repository and PRD context.

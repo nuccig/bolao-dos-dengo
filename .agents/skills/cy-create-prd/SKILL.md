@@ -48,6 +48,12 @@ Translate every technical-sounding feature into the user experience question beh
 - Optional: existing `_idea.md` file as primary input for context.
 - Optional: existing `_prd.md` file for update mode.
 
+## Supporting Imported Skills
+
+- `zoom-out`: use during required codebase exploration when the relevant area is unfamiliar and you need a concise map of modules, callers, and domain vocabulary before asking product questions.
+
+Do not route this workflow through `to-prd`, `grill-me`, or `grill-with-docs`. This skill already defines the PRD artifact path, question protocol, and Compozy ADR location.
+
 ## Checklist
 
 You MUST create a task for each phase and complete them in order:

@@ -113,6 +113,20 @@ For complete flag documentation, read `references/cli-reference.md`.
 | `cy-workflow-memory` | (internal) | Maintaining cross-task workflow memory | PR reviews, user preferences |
 | `compozy` | `/compozy` | Learning how to use Compozy | Executing workflow steps |
 
+## Imported Supporting Skills
+
+These imported skills complement Compozy phases but are not pipeline stages. Use them only when their trigger applies; otherwise keep the active `cy-*` workflow in control.
+
+| Skill | Supports | When It Helps | Do Not Use For |
+| --- | --- | --- | --- |
+| `zoom-out` | PRD/TechSpec/task enrichment/review exploration | An unfamiliar code area needs a higher-level module and caller map before decisions or task enrichment | Replacing required Compozy artifact reads |
+| `tdd` | `cy-execute-task`, `cy-fix-reviews` | A task or valid review issue changes behavior, fixes a bug, or needs regression coverage | PRD, TechSpec, or task-file drafting |
+| `diagnose` | `cy-execute-task`, `cy-fix-reviews`, `cy-final-verify` | A bug, performance regression, or failing verification has an unclear root cause | Normal implementation with a clear test signal |
+| `prototype` | `cy-create-techspec` | A state model, business rule, or UI flow is too ambiguous to design safely on paper | Production implementation or default PRD brainstorming |
+| `improve-codebase-architecture` | Architecture-heavy review or follow-up planning | The user asks for architecture improvement, or a review uncovers systemic module friction | Default `cy-review-round` issue generation |
+
+Imported issue-tracker skills (`to-prd`, `to-issues`, `triage`, `setup-matt-pocock-skills`) are a parallel workflow. Do not mix them with `.compozy/tasks/<slug>/` artifacts unless the user explicitly asks to leave the Compozy pipeline for issue-tracker work.
+
 ## Optional Extension Skills
 
 | Skill | Trigger | When To Use | Install Flow |

@@ -13,6 +13,12 @@ Decompose requirements into detailed, actionable task files with codebase-inform
 - Feature name identifying the `.compozy/tasks/<name>/` directory.
 - At minimum, `_prd.md` or `_techspec.md` in that directory.
 
+## Supporting Imported Skills
+
+- `zoom-out`: use during codebase exploration or per-task enrichment when a module cluster is unfamiliar and task boundaries depend on understanding callers, dependencies, or existing conventions.
+
+Do not use `to-issues` or `triage` here. Those skills create or manage issue-tracker work, while this workflow must produce `.compozy/tasks/<name>/` task files.
+
 ## Workflow
 
 1. Load type registry.

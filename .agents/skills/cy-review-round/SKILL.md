@@ -12,6 +12,13 @@ Perform a structured code review of a PRD implementation and produce a review ro
 - Feature name identifying the `.compozy/tasks/<name>/` directory.
 - Optional: specific files or directories to scope the review.
 
+## Supporting Imported Skills
+
+- `zoom-out`: use while identifying review scope when an unfamiliar module cluster needs a higher-level map before prioritizing files.
+- `improve-codebase-architecture`: use only as optional background when the user explicitly wants an architecture-quality lens or the review's Architecture evaluation area dominates the work.
+
+Do not let supporting skills replace this workflow's output. `cy-review-round` must still produce review issue files compatible with `cy-fix-reviews` when actionable issues are found.
+
 ## Workflow
 
 1. Determine the review round directory.

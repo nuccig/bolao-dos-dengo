@@ -13,6 +13,13 @@ Execute the review remediation workflow in a strict sequence. The review files a
 - The PRD review round directory and issue-file frontmatter.
 - The repository verification workflow required by `cy-final-verify`.
 
+## Supporting Imported Skills
+
+- `diagnose`: use when issue triage or post-fix verification exposes a bug, performance regression, or failure with an unclear root cause.
+- `tdd`: use when a valid review issue changes behavior or needs regression coverage. Write the focused failing test before the production fix when a correct test surface exists.
+
+Keep `cy-final-verify` as the completion gate even when supporting skills are used.
+
 ## Workflow
 
 1. Gather round context.

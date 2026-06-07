@@ -36,6 +36,13 @@ Once the user has answered the technical clarification questions and approved an
 - Optional: existing `_prd.md` as primary input.
 - Optional: existing `_techspec.md` for update mode.
 
+## Supporting Imported Skills
+
+- `zoom-out`: use during architecture exploration when the implementation area is unfamiliar and you need a map of existing modules, callers, and patterns.
+- `prototype`: use only when a state model, business rule, or UI flow remains ambiguous enough that a throwaway prototype would clarify the technical decision before ADRs are written.
+
+Do not use `prototype` to start production implementation, and do not replace this workflow with `improve-codebase-architecture` unless the user asked for a separate architecture audit.
+
 ## Checklist
 
 You MUST create a task for each phase and complete them in order:

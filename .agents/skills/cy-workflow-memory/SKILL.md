@@ -14,6 +14,10 @@ Maintain the workflow memory files provided by the caller.
 - Current task memory file path.
 - Optional caller signal indicating whether either file must be compacted before proceeding.
 
+## Imported Skill Boundary
+
+No imported supporting skill is required for normal workflow memory maintenance. Do not use `handoff` for Compozy run memory: `handoff` creates a session-transfer document outside the workflow, while this skill maintains durable `.compozy/tasks/<name>/memory/` context.
+
 ## Workflow
 
 1. Load the memory state before editing code.
