@@ -6,30 +6,32 @@ export const dynamic = "force-dynamic";
 
 export default function JoinPoolPage() {
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-md flex-col justify-center px-5 py-8">
-      <Link className="mb-8 text-sm font-bold text-[#0f7b4f]" href="/pools">
-        Voltar
+    <main className="m-page">
+      <section className="m-narrow flex min-h-screen flex-col justify-center py-16">
+      <Link className="m-link mb-8" href="/pools">
+        ← Voltar
       </Link>
-      <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#0f7b4f]">
+      <p className="m-eyebrow">
         Convite
       </p>
-      <h1 className="mt-2 text-4xl font-black tracking-tight">
+      <h1 className="m-display mt-3 text-5xl">
         Entre no bolão da galera.
       </h1>
-      <form action={joinPoolAction} className="mt-8 grid gap-3 rounded-[2rem] bg-white p-5 shadow-xl shadow-black/5">
-        <label className="grid gap-2 text-sm font-bold">
-          Código do convite
+      <form action={joinPoolAction} className="m-card mt-8 grid gap-4 p-6">
+        <label className="grid gap-2">
+          <span className="m-eyebrow">Código do convite</span>
           <input
-            className="rounded-2xl border border-black/10 bg-white px-4 py-4 uppercase"
+            className="m-input uppercase"
             name="inviteCode"
             placeholder="ABC123"
             required
           />
         </label>
-        <button className="rounded-2xl bg-[#0f7b4f] px-5 py-4 font-black text-white" type="submit">
+        <button className="m-button w-full" type="submit">
           Entrar no bolão
         </button>
       </form>
+      </section>
     </main>
   );
 }

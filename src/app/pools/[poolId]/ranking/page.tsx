@@ -22,35 +22,40 @@ export default async function RankingPage({
   if (!ranking) notFound();
 
   return (
-    <main className="mx-auto min-h-screen w-full max-w-md px-5 py-6">
-      <Link className="text-sm font-bold text-[#0f7b4f]" href={`/pools/${pool.id}`}>
-        Voltar ao bolão
+    <main className="m-page">
+      <section className="m-container py-10 md:py-16">
+      <Link className="m-link" href={`/pools/${pool.id}`}>
+        ← Voltar ao bolão
       </Link>
-      <p className="mt-4 text-xs font-bold uppercase tracking-[0.28em] text-[#0f7b4f]">
+      <p className="m-eyebrow mt-6">
         Ranking
       </p>
-      <h1 className="text-3xl font-black">{pool.name}</h1>
+      <h1 className="m-display mt-2 text-5xl">{pool.name}</h1>
+      <div className="m-stripe mt-8" aria-hidden="true">
+        <span />
+      </div>
 
-      <section className="mt-6 grid gap-3">
+      <section className="mt-8 grid gap-4 lg:grid-cols-2">
         {ranking.map((entry) => (
-          <article className="rounded-[1.5rem] bg-white p-4 shadow-lg shadow-black/5" key={entry.userId}>
+          <article className="m-card p-6" key={entry.userId}>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-black text-[#0f7b4f]">#{entry.rank}</p>
-                <h2 className="text-xl font-black">{entry.displayName}</h2>
+                <p className="m-eyebrow">#{entry.rank}</p>
+                <h2 className="mt-2 text-2xl font-bold uppercase">{entry.displayName}</h2>
               </div>
-              <strong className="text-3xl font-black">{entry.totalPoints}</strong>
+              <strong className="text-5xl font-bold">{entry.totalPoints}</strong>
             </div>
-            <div className="mt-3 grid grid-cols-2 gap-2 text-center text-sm font-bold text-[#6d5c4b]">
-              <span className="rounded-xl bg-[#fff8ef] px-3 py-2">
+            <div className="mt-6 grid grid-cols-2 gap-3 text-center text-sm font-bold uppercase tracking-[1.5px]">
+              <span className="m-spec-cell p-3">
                 {entry.exactScoreHits} cravados
               </span>
-              <span className="rounded-xl bg-[#fff8ef] px-3 py-2">
+              <span className="m-spec-cell p-3">
                 {entry.outcomeHits} resultados
               </span>
             </div>
           </article>
         ))}
+      </section>
       </section>
     </main>
   );

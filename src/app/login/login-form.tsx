@@ -38,7 +38,7 @@ export function LoginForm() {
   return (
     <div className="grid gap-3">
       <input
-        className="rounded-2xl border border-black/10 bg-white px-4 py-4"
+        className="m-input"
         inputMode="email"
         onChange={(event) => setEmail(event.target.value)}
         placeholder="seu@email.com"
@@ -46,7 +46,7 @@ export function LoginForm() {
         value={email}
       />
       <button
-        className="rounded-2xl bg-[#0f7b4f] px-5 py-4 font-black text-white disabled:opacity-60"
+        className="m-button w-full disabled:opacity-60"
         disabled={isPending || !email}
         onClick={signInWithEmail}
         type="button"
@@ -54,14 +54,14 @@ export function LoginForm() {
         Receber magic link
       </button>
       <button
-        className="rounded-2xl border border-black/10 bg-white px-5 py-4 font-black"
+        className="m-button m-button-secondary w-full"
         disabled={isPending}
         onClick={signInWithGoogle}
         type="button"
       >
         Entrar com Google
       </button>
-      {message ? <p className="text-sm font-bold text-[#0f7b4f]">{message}</p> : null}
+      {message ? <p className="m-body text-sm">{message}</p> : null}
     </div>
   );
 }

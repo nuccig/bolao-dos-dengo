@@ -9,80 +9,77 @@ const highlights = [
 
 export default function HomePage() {
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-md flex-col px-5 py-6 sm:max-w-5xl sm:px-8">
-      <nav className="flex items-center justify-between">
-        <div>
-          <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#0f7b4f]">
-            Copa 2026
-          </p>
-          <h1 className="text-xl font-black">Bolao Dos Dengo</h1>
+    <main className="m-page">
+      <nav className="m-container flex h-16 items-center justify-between border-b m-hairline">
+        <div className="flex items-center gap-4">
+          <div className="m-stripe w-14" aria-hidden="true">
+            <span />
+          </div>
+          <h1 className="m-link">Bolao Dos Dengo</h1>
         </div>
-        <Link
-          className="rounded-full bg-[#0f7b4f] px-4 py-2 text-sm font-bold text-white shadow-lg shadow-green-900/20"
-          href="/pools"
-        >
-          Entrar
+        <Link className="m-link" href="/pools">
+          Entrar →
         </Link>
       </nav>
 
-      <section className="flex flex-1 flex-col justify-center py-12 sm:grid sm:grid-cols-[1.05fr_0.95fr] sm:items-center sm:gap-10">
-        <div>
-          <p className="mb-4 inline-flex rounded-full bg-white/80 px-3 py-1 text-sm font-bold text-[#6d4b09] shadow-sm">
-            Bolao simples, disputa séria.
-          </p>
-          <h2 className="text-5xl font-black leading-[0.94] tracking-tight sm:text-6xl">
-            Seu grupo competindo jogo a jogo.
-          </h2>
-          <p className="mt-5 text-lg leading-8 text-[#6d5c4b]">
-            Chute placares, acompanhe pontuação automática e veja quem crava
-            mais resultados na Copa do Mundo masculina de 2026.
-          </p>
-          <div className="mt-8 grid gap-3">
-            <Link
-              className="rounded-2xl bg-[#0f7b4f] px-5 py-4 text-center text-base font-black text-white shadow-xl shadow-green-900/20"
-              href="/pools/new"
-            >
-              Criar meu bolao
-            </Link>
-            <Link
-              className="rounded-2xl border border-black/10 bg-white px-5 py-4 text-center text-base font-black"
-              href="/join"
-            >
-              Tenho um convite
-            </Link>
-          </div>
-        </div>
-
-        <div className="mt-10 rounded-[2rem] bg-[#20130a] p-4 text-white shadow-2xl sm:mt-0">
-          <div className="rounded-[1.5rem] bg-white/10 p-4">
-            <p className="text-sm font-bold text-[#f4b63f]">Rodada de hoje</p>
-            <div className="mt-4 rounded-2xl bg-white p-4 text-[#20130a]">
-              <div className="flex items-center justify-between text-sm font-bold text-[#6d5c4b]">
-                <span>Brasil</span>
-                <span>20:00</span>
-                <span>Japao</span>
-              </div>
-              <div className="mt-4 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
-                <div className="rounded-2xl bg-[#fff8ef] p-4 text-center text-3xl font-black">
-                  2
-                </div>
-                <span className="font-black">x</span>
-                <div className="rounded-2xl bg-[#fff8ef] p-4 text-center text-3xl font-black">
-                  1
-                </div>
-              </div>
-              <p className="mt-4 rounded-xl bg-[#f4b63f]/20 px-3 py-2 text-center text-sm font-bold text-[#6d4b09]">
-                Editavel ate o inicio da partida
-              </p>
+      <section className="m-photo-band">
+        <div className="m-container grid min-h-[calc(100vh-4rem)] items-end py-16 md:grid-cols-[1.1fr_0.9fr] md:gap-16 md:py-24">
+          <div className="max-w-4xl">
+            <p className="m-eyebrow">Copa do Mundo 2026</p>
+            <h2 className="m-display mt-4 text-5xl md:text-7xl lg:text-[80px]">
+              Seu grupo competindo jogo a jogo.
+            </h2>
+            <p className="m-body mt-6 max-w-2xl text-lg">
+              Chute placares, acompanhe pontuação automática e veja quem crava
+              mais resultados em uma experiência mobile-first com precisão de
+              paddock.
+            </p>
+            <div className="mt-10 grid gap-3 sm:flex">
+              <Link className="m-button" href="/pools/new">
+                Criar meu bolao
+              </Link>
+              <Link className="m-button m-button-secondary" href="/join">
+                Tenho um convite
+              </Link>
             </div>
           </div>
-          <ul className="mt-5 grid gap-3 text-sm font-semibold text-white/86">
-            {highlights.map((highlight) => (
-              <li key={highlight} className="rounded-2xl bg-white/10 px-4 py-3">
+
+          <div className="m-card mt-12 p-6 md:mt-0">
+            <p className="m-eyebrow">Rodada de hoje</p>
+            <div className="m-stripe mt-4" aria-hidden="true">
+              <span />
+            </div>
+            <div className="mt-6 grid grid-cols-[1fr_auto_1fr] items-center gap-4 text-center">
+              <strong className="m-link">Brasil</strong>
+              <span className="text-[var(--muted)]">20:00</span>
+              <strong className="m-link">Japao</strong>
+            </div>
+            <div className="mt-5 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
+              <div className="m-spec-cell p-5 text-center text-4xl font-bold">
+                2
+              </div>
+              <span className="m-eyebrow text-center">x</span>
+              <div className="m-spec-cell p-5 text-center text-4xl font-bold">
+                1
+              </div>
+            </div>
+            <p className="m-body mt-5 border-t pt-4 text-sm m-hairline">
+              Editavel ate o inicio da partida.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="m-container py-24">
+        <p className="m-eyebrow">Sistema de disputa</p>
+        <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {highlights.map((highlight) => (
+            <article className="m-card p-6" key={highlight}>
+              <h3 className="border-t pt-6 text-xl font-bold uppercase leading-tight m-hairline">
                 {highlight}
-              </li>
-            ))}
-          </ul>
+              </h3>
+            </article>
+          ))}
         </div>
       </section>
     </main>

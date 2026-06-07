@@ -26,40 +26,45 @@ export default async function PoolAdminPage({
   if (!canManagePool(memberships, pool.id)) notFound();
 
   return (
-    <main className="mx-auto min-h-screen w-full max-w-md px-5 py-6">
-      <Link className="text-sm font-bold text-[#0f7b4f]" href={`/pools/${pool.id}`}>
-        Voltar ao bolão
+    <main className="m-page">
+      <section className="m-container py-10 md:py-16">
+      <Link className="m-link" href={`/pools/${pool.id}`}>
+        ← Voltar ao bolão
       </Link>
-      <p className="mt-4 text-xs font-bold uppercase tracking-[0.28em] text-[#0f7b4f]">
+      <p className="m-eyebrow mt-6">
         Admin
       </p>
-      <h1 className="text-3xl font-black">{pool.name}</h1>
+      <h1 className="m-display mt-2 text-5xl">{pool.name}</h1>
 
-      <section className="mt-6 rounded-[1.5rem] bg-white p-5 shadow-lg shadow-black/5">
-        <p className="text-sm font-bold text-[#6d5c4b]">Código de convite</p>
-        <strong className="mt-2 block text-4xl font-black tracking-widest">
+      <section className="m-card mt-8 p-6">
+        <p className="m-eyebrow">Código de convite</p>
+        <div className="m-stripe mt-4" aria-hidden="true">
+          <span />
+        </div>
+        <strong className="mt-6 block text-5xl font-bold tracking-widest">
           {pool.inviteCode}
         </strong>
-        <p className="mt-3 text-sm text-[#6d5c4b]">
+        <p className="m-body mt-4 text-sm">
           Compartilhe este código no grupo. Regeneração e remoção de membros ficam para a próxima fatia.
         </p>
       </section>
 
-      <section className="mt-5 grid gap-3">
-        <h2 className="text-xl font-black">Membros</h2>
+      <section className="mt-10 grid gap-4">
+        <h2 className="m-eyebrow">Membros</h2>
         {pool.memberships.map((membership) => (
-          <article className="rounded-2xl bg-white p-4 shadow shadow-black/5" key={membership.id}>
+          <article className="m-card p-5" key={membership.id}>
             <div className="flex items-center justify-between gap-3">
               <div>
-                <h3 className="font-black">{membership.user.displayName}</h3>
-                <p className="text-sm font-bold text-[#6d5c4b]">{membership.role}</p>
+                <h3 className="text-xl font-bold uppercase">{membership.user.displayName}</h3>
+                <p className="m-body text-sm">{membership.role}</p>
               </div>
-              <time className="text-xs font-bold text-[#6d5c4b]" dateTime={membership.joinedAt.toISOString()}>
+              <time className="m-eyebrow text-xs" dateTime={membership.joinedAt.toISOString()}>
                 {membership.joinedAt.toLocaleDateString("pt-BR")}
               </time>
             </div>
           </article>
         ))}
+      </section>
       </section>
     </main>
   );

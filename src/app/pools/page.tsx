@@ -10,48 +10,59 @@ export default async function PoolsPage() {
   const pools = await listUserPools(user.id);
 
   return (
-    <main className="mx-auto min-h-screen w-full max-w-md px-5 py-6">
-      <header className="flex items-center justify-between">
+    <main className="m-page">
+      <section className="m-container py-10 md:py-16">
+      <header className="flex items-center justify-between border-b pb-6 m-hairline">
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#0f7b4f]">
+          <p className="m-eyebrow">
             Meus grupos
           </p>
-          <h1 className="text-3xl font-black">Bolões</h1>
+          <h1 className="m-display mt-2 text-5xl">Bolões</h1>
         </div>
-        <Link className="rounded-full bg-[#0f7b4f] px-4 py-2 text-sm font-bold text-white" href="/pools/new">
+        <Link className="m-button hidden sm:inline-flex" href="/pools/new">
           Novo
         </Link>
       </header>
 
-      <div className="mt-6 grid gap-3">
-        <Link className="rounded-2xl border border-dashed border-black/20 bg-white/70 px-4 py-4 text-center font-black" href="/join">
+      <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <Link className="m-card border-dashed p-6" href="/join">
+          <p className="m-eyebrow">Convite</p>
+          <h2 className="mt-4 text-2xl font-bold uppercase">
           Entrar com código
+          </h2>
         </Link>
         {pools.map((pool) => (
           <Link
-            className="rounded-[1.5rem] bg-white p-5 shadow-lg shadow-black/5"
+            className="m-card p-6"
             href={`/pools/${pool.id}`}
             key={pool.id}
           >
-            <div className="flex items-center justify-between gap-4">
-              <div>
-                <h2 className="text-xl font-black">{pool.name}</h2>
-                <p className="text-sm font-bold text-[#6d5c4b]">
-                  {pool.memberships[0]?.role === "admin" ? "Admin" : "Membro"}
-                </p>
-              </div>
-              <span className="rounded-full bg-[#f4b63f]/25 px-3 py-1 text-sm font-black text-[#6d4b09]">
+            <div className="m-stripe mb-6 max-w-20" aria-hidden="true">
+              <span />
+            </div>
+            <h2 className="text-2xl font-bold uppercase leading-tight">
+              {pool.name}
+            </h2>
+            <div className="mt-6 grid grid-cols-2 gap-3">
+              <span className="m-spec-cell p-3 text-center text-xs font-bold uppercase tracking-[1.5px]">
+                {pool.memberships[0]?.role === "admin" ? "Admin" : "Membro"}
+              </span>
+              <span className="m-spec-cell p-3 text-center text-xs font-bold uppercase tracking-[1.5px]">
                 #{pool.inviteCode}
               </span>
             </div>
           </Link>
         ))}
         {pools.length === 0 ? (
-          <p className="rounded-2xl bg-white p-4 text-center text-sm font-semibold text-[#6d5c4b]">
+          <p className="m-body m-card p-6 text-center text-sm">
             Crie seu primeiro bolão ou entre com um convite.
           </p>
         ) : null}
       </div>
+      <Link className="m-button mt-6 flex sm:hidden" href="/pools/new">
+        Novo bolão
+      </Link>
+      </section>
     </main>
   );
 }
