@@ -202,3 +202,58 @@ input {
 .m-hairline {
   border-color: var(--hairline);
 }
+
+/* Top navigation bar */
+.m-nav {
+  background: var(--canvas);
+  border-bottom: 1px solid var(--hairline);
+  height: 64px;
+}
+
+/* Category tabs (magazine / topics style) */
+.m-category-tab {
+  color: var(--body);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  line-height: 1.3;
+  padding: 12px 0;
+  text-transform: uppercase;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.m-category-tab-active {
+  color: var(--ink);
+  border-bottom: 2px solid var(--ink);
+}
+
+/* Footer */
+.m-footer {
+  background: var(--canvas);
+  color: var(--body);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.5;
+  padding: 64px 0;
+}
+
+/* Section page header with hairline bottom */
+.m-page-header {
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: 24px;
+}
+
+/* Visually-hidden utility for screen reader only text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

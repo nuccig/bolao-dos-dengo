@@ -14,6 +14,7 @@ Do NOT skip the research phase — every PRD MUST be enriched with codebase and 
 Do NOT skip user interactions — the user MUST participate in shaping the PRD at every decision point.
 Do NOT require section-by-section approval — generate the complete draft, then let the user review it.
 This applies to EVERY PRD regardless of perceived simplicity.
+If the current branch is main, create another branch and checkout it.
 </HARD-GATE>
 
 ## Asking Questions

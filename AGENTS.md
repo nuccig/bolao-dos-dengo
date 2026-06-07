@@ -8,6 +8,7 @@ Optimize for a fast mobile flow, clear trust in scoring, and simple administrati
 
 ## Source Documents
 
+- Todos documentos de PRD, Tasks, e Planos devem ser escritos em PT-BR
 - Read `AGENTS.md` first for product, architecture, business rules, and agent workflow.
 - Read `DESIGN.md` before changing UI, layout, colors, typography, or component styling. Treat it as the visual direction source of truth unless the user explicitly asks to replace it.
 - When a plan file is attached, execute the plan exactly and do not edit the plan file unless asked.
